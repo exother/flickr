@@ -4,7 +4,6 @@ class InfiniteScroll extends Directive
       restrict: "A"
       scope:
         infiniteScroll: '&'
-        logger: '=infiniteLogger'
       replace: true
       link: (scope, el, attrs)->
         $window = angular.element($window)
