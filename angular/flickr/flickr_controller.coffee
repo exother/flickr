@@ -9,7 +9,7 @@ class Flickr extends Controller
 
     page = 1
     searchedPhrase = ''
-    infiniteAvaiable = false
+    infiniteAvailable = false
 
     $scope.fullScreenPicture = null
     $scope.showFullScreenPicture = false
@@ -31,7 +31,7 @@ class Flickr extends Controller
       $scope.foundImages = []
       page = 1
       searchedPhrase = $scope.searchPhrase
-      infiniteAvaiable = true
+      infiniteAvailable = true
       search()
 
     search = ->
@@ -43,7 +43,7 @@ class Flickr extends Controller
           $scope.searchLoading = false
 
     $scope.infiniteSearch = ->
-      if infiniteAvaiable
+      if infiniteAvailable
         page += 1
         search()
 
