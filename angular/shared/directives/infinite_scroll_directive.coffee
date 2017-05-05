@@ -6,6 +6,7 @@ class InfiniteScroll extends Directive
         infiniteScroll: '&'
       replace: true
       link: (scope, el, attrs)->
+        # TODO: implement scroll distance, stub for future use
         scrollDistance = 0
         scrollEnabled = true
         handler = ->
