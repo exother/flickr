@@ -6,8 +6,6 @@ class InfiniteScroll extends Directive
         infiniteScroll: '&'
       replace: true
       link: (scope, el, attrs)->
-        $window = angular.element($window)
-
         scrollDistance = 0
         scrollEnabled = true
         handler = ->
