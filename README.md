@@ -1,4 +1,4 @@
-#Flickr Viewer App
+# Flickr Viewer App
 
 ### Installation
 
@@ -11,4 +11,4 @@ $ gulp
 ```
 
 This makes sure that all dependencies are properly installed and compiled. 
-After that simply open the `'app.html'`.
+After that simply open the `app.html`.
