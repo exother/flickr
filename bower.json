@@ -1,0 +1,25 @@
+{
+  "name": "flickr",
+  "description": "Flickr Viewer App",
+  "main": "",
+  "authors": [
+    "Michał Zezyk <zezyk.michal@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "dependencies": {
+    "angular": "1.5.8",
+    "bootstrap": "4.0.0-alpha.6",
+    "angular-local-storage": "0.5.2"
+  },
+  "resolutions": {
+    "angular": "1.5.8"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

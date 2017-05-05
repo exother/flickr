@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="app">
+  <head>
+    <title>Flickr Viewer App</title>
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="assets/css/album.css" rel="stylesheet">
+
+    <script src="assets/javascript/angular.js"></script>
+    <script src="assets/javascript/angular-local-storage.js"></script>
+    <script src="assets/javascript/angular/flickr.js"></script>
+  </head>
+  <body ng-controller="flickrController">
+    <div class="collapse bg-inverse" id="navbarHeader">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-3 fav-element" ng-repeat="image in favouritesImages">
+            <div class="col-sm-4 pull-left">
+              <img src="{{image.small_image_url}}">
+            </div>
+            <div class="col-sm-8 pull-right">
+              <button type="button" class="btn btn-primary btn-sm" ng-click="showFullPicture(image)">Preview</button>
+              <button type="button" class="btn btn-danger btn-sm" ng-click="deleteFromFavourites(image)">Delete</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="navbar navbar-inverse bg-inverse">
+      <div class="container d-flex justify-content-between">
+        <a href="#" class="navbar-brand">Flickr Viewer App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation" ng-show="favouritesImages.length > 0">
+          <i class="fa fa-heart"></i> Favourites
+        </button>
+      </div>
+    </div>
+    <section class="jumbotron text-center">
+      <div class="container">
+        <p>
+          <input type="text" class="form-control" placeholder="Enter the name or tags to search..." ng-model="searchPhrase">
+        </p>
+        <p>
+          <button class="btn btn-primary" ng-click="newSearch()">Search Flickr</button>
+        </p>
+      </div>
+    </section>
+    {{infiniteLog}}
+
+    <div class="album text-muted" ng-show="foundImages.length > 0">
+      <div class="container" infinite-scroll="infiniteSearch()" infinite-logger="infiniteLog">
+
+        <div class="row">
+          <div class="card" ng-repeat="image in foundImages" ng-class="isFavouriteImage(image.id) ? 'bg-danger text-white' : ''">
+            <img class="img-rounded" ng-src="{{image.thumb_image_url}}" alt="{{image.title}}">
+            <p class="card-text">{{image.title}}</p>
+            <div class="card-cover">
+              <p class="text-center card-buttons">
+                <button type="button" class="btn btn-outline-primary" ng-click="showFullPicture(image)"><i class="fa fa-search-plus fa-2x"></i></button>
+                <button type="button" class="btn btn-outline-danger" ng-click="addToFavourites(image)" ng-hide="isFavouriteImage(image.id)"><i class="fa fa-heart fa-2x"></i></button>
+                <button type="button" class="btn btn-outline-danger" ng-click="deleteFromFavourites(image)" ng-show="isFavouriteImage(image.id)"><i class="fa fa-ban fa-2x"></i></button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="text-center" ng-show="searchLoading"><i class="fa fa-circle-o-notch fa-spin fa-2x"></i></p>
+      </div>
+    </div>
+
+    <div class="imagePreview" ng-click="hideFullPicture()" ng-show="showFullScreenPicture">
+      <img src="{{fullScreenPicture}}">
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/javascript/jquery.js"></script>
+    <script src="assets/javascript/tether.js"></script>
+    <script src="assets/javascript/bootstrap.js"></script>
+  </body>
+</html>
